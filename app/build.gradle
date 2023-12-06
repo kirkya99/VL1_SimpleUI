@@ -28,6 +28,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'de.rwu.ws2021_vl1'
 }
 
 dependencies {
