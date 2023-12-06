@@ -17,6 +17,8 @@ import de.rwu.ws2021_vl1.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,15 +41,19 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        Button anotherButton = findViewById(R.id.anotherButton);
+        anotherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Another Button", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
     }
 
     public void buttonClicked(View view) {
         Snackbar.make(view, "Button", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-    }
-
-    public void anotherButtonClicked(View view) {
-        Snackbar.make(view, "another Button", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
 
