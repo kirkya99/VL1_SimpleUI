@@ -6,22 +6,51 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+
     <Button
         android:id="@+id/clickMeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:onClick="buttonClicked"
         android:text="CLick"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="26dp" />
+        app:layout_constraintBottom_toTopOf="@+id/anotherButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/anotherButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:onClick="anotherButtonClicked"
-        android:text="Another"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="102dp" />
+        android:text="Switch on"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clickMeButton" />
+
+    <Switch
+        android:id="@+id/textSwitch"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:onClick="switchTextClicked"
+        android:text="switch Text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/anotherButton" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="ToggleButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSwitch" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

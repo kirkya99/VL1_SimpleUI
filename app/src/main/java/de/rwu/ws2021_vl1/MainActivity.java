@@ -18,7 +18,9 @@ import de.rwu.ws2021_vl1.databinding.ActivityMainBinding;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,16 +47,50 @@ public class MainActivity extends AppCompatActivity {
         anotherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Switch textSwitch = (Switch) findViewById(R.id.textSwitch);
+//                textSwitch.setChecked(false);
+                if (textSwitch.isChecked()) {
+                    anotherButton.setText("Switch on");
+                    textSwitch.setChecked(false);
+                } else {
+                    anotherButton.setText("Switch off");
+                    textSwitch.setChecked(true);
+                }
                 Snackbar.make(view, "Another Button", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
+//        anotherButton.setText("Hallo");
+//        anotherButton.set;
 
+        ToggleButton toggleButton = findViewById(R.id.toggleButton);
+
+        toggleButton.setOnClickListener(view -> {
+            boolean isOn = ((ToggleButton) view).isChecked();
+            if (isOn) {
+                Snackbar.make(view, "On", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            } else {
+                Snackbar.make(view, "Off", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
     }
 
     public void buttonClicked(View view) {
         Snackbar.make(view, "Button", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
+    }
+
+    public void switchTextClicked(View view) {
+        boolean isOn = ((Switch) view).isChecked();
+        if (isOn) {
+            Snackbar.make(view, "On", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        } else {
+            Snackbar.make(view, "Off", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
     }
 
     @Override
