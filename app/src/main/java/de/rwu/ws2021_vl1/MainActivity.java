@@ -6,20 +6,25 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.KeyEvent;
 import android.view.View;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import de.rwu.ws2021_vl1.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.Toast;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -60,8 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-//        anotherButton.setText("Hallo");
-//        anotherButton.set;
+        anotherButton.setText("Hallo");
 
         ToggleButton toggleButton = findViewById(R.id.toggleButton);
 
@@ -75,6 +79,77 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        Spinner spinner = (Spinner) findViewById(R.id.theSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.names_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Snackbar.make(view, "Name Nr." + position + parent.getItemAtPosition(position), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        EditText editText = (EditText) findViewById(R.id.editTextPersonName);
+//        editText.setOnKeyListener(new View.OnKeyListener() {
+//            public boolean onKey(View view, int keyCode, KeyEvent event) {
+//                if ((event.getAction() == KeyEvent.ACTION_DOWN)
+//                        && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+//                    Snackbar.make(view, editText.getText(), Snackbar.LENGTH_LONG)
+//                            .setAction("Action", null).show();
+//                }
+//
+//                return false;
+//            }
+//        });
+
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    Snackbar.make(v, editText.getText(), Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+                return false;
+            }
+        });
+    }
+
+    public void switchOn(View view) {
+        boolean isOn = ((CheckBox) view).isChecked();
+        if (isOn) {
+            Snackbar.make(view, "Checkbox on", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        } else {
+            Snackbar.make(view, "Checkbox off", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+    }
+
+    public void switchRadioOptions(View view) {
+        boolean isChecked = ((RadioButton) view).isChecked();
+
+        switch (view.getId()) {
+            case R.id.radioOption1:
+                if (isChecked) {
+                    Snackbar.make(view, "Radio option 1", Snackbar.LENGTH_INDEFINITE)
+                            .setAction("Action", null).show();
+                }
+                break;
+            case R.id.radioOption2:
+                if (isChecked) {
+                    Snackbar.make(view, "Radio option 2", Snackbar.LENGTH_INDEFINITE)
+                            .setAction("Action", null).show();
+                }
+                break;
+        }
     }
 
     public void buttonClicked(View view) {
